@@ -1,0 +1,61 @@
+identity:
+  name: get_mr_title
+  author: liuhan
+  label:
+    en_US: get_mr_title
+    zh_Hans: 获取MR TITLE
+    pt_BR: get_mr_title
+description:
+  human:
+    en_US: get_mr_title
+    zh_Hans: 获取MR TITLE
+    pt_BR: get_mr_title
+  llm: get_mr_title
+output_schema:
+  type: object
+  properties:
+    title:
+      type: string
+parameters:
+  - name: mr_number
+    type: string
+    required: true
+    label:
+      en_US: MR Number
+      zh_Hans: MR Number
+      pt_BR: MR Number
+    human_description:
+      en_US: MR Number
+      zh_Hans: MR Number
+      pt_BR: MR Number
+    llm_description: MR Number to get title from
+    form: llm
+  - name: repo_owner
+    type: string
+    required: true
+    label:
+      en_US: Repository Owner
+      zh_Hans: 仓库所有者
+      pt_BR: Repository Owner
+    human_description:
+      en_US: Owner of the repository
+      zh_Hans: 仓库所有者
+      pt_BR: Owner of the repository
+    llm_description: Owner of the repository (username or organization)
+    form: llm
+  - name: repo_name
+    type: string
+    required: true
+    label:
+      en_US: Repository Name
+      zh_Hans: 仓库名称
+      pt_BR: Repository Name
+    human_description:
+      en_US: Name of the repository
+      zh_Hans: 仓库名称
+      pt_BR: Name of the repository
+    llm_description: Name of the repository
+    form: llm
+extra:
+  python:
+    source: tools/get_mr_title.py

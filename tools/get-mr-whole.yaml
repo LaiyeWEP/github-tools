@@ -1,0 +1,74 @@
+identity:
+  name: get_mr_whole
+  author: liuhan
+  label:
+    en_US: get_mr_whole
+    zh_Hans: 获取MR 文件 WHOLE内容
+    pt_BR: get_mr_whole
+description:
+  human:
+    en_US: get_mr_whole
+    zh_Hans: 获取MR文件完整内容
+    pt_BR: get_mr_whole
+  llm: get_mr_whole
+output_schema:
+  type: object
+  properties:
+    file_content:
+      type: object
+parameters:
+  - name: mr_number
+    type: string
+    required: true
+    label:
+      en_US: MR Number
+      zh_Hans: MR Number
+      pt_BR: MR Number
+    human_description:
+      en_US: MR Number
+      zh_Hans: MR Number
+      pt_BR: MR Number
+    llm_description: MR Number to get file content from
+    form: llm
+  - name: repo_owner
+    type: string
+    required: true
+    label:
+      en_US: Repository Owner
+      zh_Hans: 仓库所有者
+      pt_BR: Repository Owner
+    human_description:
+      en_US: Owner of the repository
+      zh_Hans: 仓库所有者
+      pt_BR: Owner of the repository
+    llm_description: Owner of the repository (username or organization)
+    form: llm
+  - name: repo_name
+    type: string
+    required: true
+    label:
+      en_US: Repository Name
+      zh_Hans: 仓库名称
+      pt_BR: Repository Name
+    human_description:
+      en_US: Name of the repository
+      zh_Hans: 仓库名称
+      pt_BR: Name of the repository
+    llm_description: Name of the repository
+    form: llm
+  - name: file_path
+    type: string
+    required: false
+    label:
+      en_US: File Path
+      zh_Hans: 文件路径
+      pt_BR: File Path
+    human_description:
+      en_US: Path to the file in the repository (optional, if not provided, all files in the MR will be retrieved)
+      zh_Hans: 仓库中的文件路径（可选，如果不提供，将获取MR中所有文件的内容）
+      pt_BR: Path to the file in the repository (optional, if not provided, all files in the MR will be retrieved)
+    llm_description: Optional path to the file in the repository. If not provided, all files in the MR will be retrieved.
+    form: llm
+extra:
+  python:
+    source: tools/get_mr_whole.py

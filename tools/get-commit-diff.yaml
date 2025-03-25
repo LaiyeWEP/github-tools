@@ -1,0 +1,74 @@
+identity:
+  name: get_commit_diff
+  author: liuhan
+  label:
+    en_US: Get Commit Diff Content
+    zh_Hans: 获取Commit差异内容
+    pt_BR: Get Commit Diff Content
+description:
+  human:
+    en_US: Get the diff content of a commit, optionally for a specific file
+    zh_Hans: 获取提交的差异内容，可选择获取特定文件的差异
+    pt_BR: Get the diff content of a commit, optionally for a specific file
+  llm: Retrieve the diff content from a commit. If a file path is provided, returns the diff for that specific file; otherwise returns the complete diff
+output_schema:
+  type: object
+  properties:
+    diff_content:
+      type: string
+parameters:
+  - name: commit_sha
+    type: string
+    required: true
+    label:
+      en_US: Commit SHA
+      zh_Hans: Commit SHA
+      pt_BR: Commit SHA
+    human_description:
+      en_US: Commit SHA
+      zh_Hans: Commit SHA
+      pt_BR: Commit SHA
+    llm_description: Commit SHA to get diff from
+    form: llm
+  - name: repo_owner
+    type: string
+    required: true
+    label:
+      en_US: Repository Owner
+      zh_Hans: 仓库所有者
+      pt_BR: Repository Owner
+    human_description:
+      en_US: Owner of the repository
+      zh_Hans: 仓库所有者
+      pt_BR: Owner of the repository
+    llm_description: Owner of the repository (username or organization)
+    form: llm
+  - name: repo_name
+    type: string
+    required: true
+    label:
+      en_US: Repository Name
+      zh_Hans: 仓库名称
+      pt_BR: Repository Name
+    human_description:
+      en_US: Name of the repository
+      zh_Hans: 仓库名称
+      pt_BR: Name of the repository
+    llm_description: Name of the repository
+    form: llm
+  - name: file_path
+    type: string
+    required: false
+    label:
+      en_US: File Path
+      zh_Hans: 文件路径
+      pt_BR: File Path
+    human_description:
+      en_US: Optional path to a specific file to get diff for
+      zh_Hans: 可选的特定文件路径，用于获取该文件的差异内容
+      pt_BR: Optional path to a specific file to get diff for
+    llm_description: Optional file path to get specific file diff. If not provided, returns complete diff
+    form: llm
+extra:
+  python:
+    source: tools/get_commit_diff.py

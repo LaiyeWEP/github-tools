@@ -1,0 +1,74 @@
+identity:
+  name: get_commit_whole
+  author: liuhan
+  label:
+    en_US: Get Commit Whole Content
+    zh_Hans: 获取Commit文件完整内容
+    pt_BR: Get Commit Whole Content
+description:
+  human:
+    en_US: Get the complete content of files in a commit
+    zh_Hans: 获取Commit中文件的完整内容
+    pt_BR: Get the complete content of files in a commit
+  llm: Get the complete content of files in a commit. If a file path is provided, returns content for that specific file; otherwise returns content for all modified files
+output_schema:
+  type: object
+  properties:
+    file_content:
+      type: object
+parameters:
+  - name: commit_sha
+    type: string
+    required: true
+    label:
+      en_US: Commit SHA
+      zh_Hans: Commit SHA
+      pt_BR: Commit SHA
+    human_description:
+      en_US: Commit SHA
+      zh_Hans: Commit SHA
+      pt_BR: Commit SHA
+    llm_description: Commit SHA to get file content from
+    form: llm
+  - name: repo_owner
+    type: string
+    required: true
+    label:
+      en_US: Repository Owner
+      zh_Hans: 仓库所有者
+      pt_BR: Repository Owner
+    human_description:
+      en_US: Owner of the repository
+      zh_Hans: 仓库所有者
+      pt_BR: Owner of the repository
+    llm_description: Owner of the repository (username or organization)
+    form: llm
+  - name: repo_name
+    type: string
+    required: true
+    label:
+      en_US: Repository Name
+      zh_Hans: 仓库名称
+      pt_BR: Repository Name
+    human_description:
+      en_US: Name of the repository
+      zh_Hans: 仓库名称
+      pt_BR: Name of the repository
+    llm_description: Name of the repository
+    form: llm
+  - name: file_path
+    type: string
+    required: false
+    label:
+      en_US: File Path
+      zh_Hans: 文件路径
+      pt_BR: File Path
+    human_description:
+      en_US: Path to the file in the repository (optional, if not provided, all files in the commit will be retrieved)
+      zh_Hans: 仓库中的文件路径（可选，如果不提供，将获取Commit中所有文件的内容）
+      pt_BR: Path to the file in the repository (optional, if not provided, all files in the commit will be retrieved)
+    llm_description: Optional path to the file in the repository. If not provided, all files in the commit will be retrieved.
+    form: llm
+extra:
+  python:
+    source: tools/get_commit_whole.py

@@ -1,0 +1,51 @@
+identity:
+  author: liuhan
+  name: laiye-git-tools
+  label:
+    en_US: laiye git tools
+    zh_Hans: laiye git tools
+    pt_BR: laiye git tools
+  description:
+    en_US: laiye gitea tools
+    zh_Hans: laiye gitea tools
+    pt_BR: laiye gitea tools
+  icon: icon.svg
+  tags:
+    - other
+credentials_for_provider:
+  gitea_access_token:
+    type: secret-input
+    required: true
+    label:
+      en_US: Gitea Access Token
+      zh_Hans: Gitea Access Token
+    placeholder:
+      en_US: Please input your Gitea Access Token
+      zh_Hans: 请输入你的 Gitea Access Token
+    help:
+      en_US: Get your Gitea Token from Gitea Settings
+      zh_Hans: 从 Gitea 设置获取您的 Gitea Token
+    url: https://git.laiye.com/user/settings/applications
+  gitea_api_url:
+    type: text-input
+    required: true
+    label:
+      en_US: Gitea API URL
+      zh_Hans: Gitea API URL
+    placeholder:
+      en_US: Please input your Gitea API URL
+      zh_Hans: 请输入你的 Gitea API URL
+tools:
+  - tools/get-mr-diff.yaml
+  - tools/get-mr-file-list.yaml
+  - tools/get-mr-title.yaml
+  - tools/get-mr-whole.yaml
+  - tools/get-mr-submitter.yaml
+  - tools/add-mr-comment.yaml
+  - tools/get-commit-diff.yaml
+  - tools/get-commit-whole.yaml
+  - tools/get-commit-file-list.yaml
+  - tools/add-commit-comment.yaml
+extra:
+  python:
+    source: provider/gittools.py

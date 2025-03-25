@@ -1,0 +1,81 @@
+identity:
+  name: add_mr_comment
+  author: liuhan
+  label:
+    en_US: add_mr_comment
+    zh_Hans: 添加MR评论
+    pt_BR: add_mr_comment
+description:
+  human:
+    en_US: Add a comment to a merge request
+    zh_Hans: 为合并请求添加评论
+    pt_BR: Add a comment to a merge request
+  llm: Create a new comment on a specified merge request
+output_schema:
+  type: object
+  properties:
+    comment:
+      type: object
+      properties:
+        id:
+          type: number
+        url:
+          type: string
+        created_at:
+          type: string
+parameters:
+  - name: mr_number
+    type: string
+    required: true
+    label:
+      en_US: MR Number
+      zh_Hans: MR编号
+      pt_BR: MR Number
+    human_description:
+      en_US: The number of the merge request
+      zh_Hans: 合并请求的编号
+      pt_BR: The number of the merge request
+    llm_description: The number/ID of the merge request to add comment to
+    form: llm
+  - name: repo_owner
+    type: string
+    required: true
+    label:
+      en_US: Repository Owner
+      zh_Hans: 仓库所有者
+      pt_BR: Repository Owner
+    human_description:
+      en_US: Owner of the repository
+      zh_Hans: 仓库所有者
+      pt_BR: Owner of the repository
+    llm_description: Owner of the repository (username or organization)
+    form: llm
+  - name: repo_name
+    type: string
+    required: true
+    label:
+      en_US: Repository Name
+      zh_Hans: 仓库名称
+      pt_BR: Repository Name
+    human_description:
+      en_US: Name of the repository
+      zh_Hans: 仓库名称
+      pt_BR: Name of the repository
+    llm_description: Name of the repository
+    form: llm
+  - name: comment
+    type: string
+    required: true
+    label:
+      en_US: Comment Content
+      zh_Hans: 评论内容
+      pt_BR: Comment Content
+    human_description:
+      en_US: The content of the comment
+      zh_Hans: 评论的具体内容
+      pt_BR: The content of the comment
+    llm_description: The text content of the comment to be added
+    form: llm
+extra:
+  python:
+    source: tools/add_mr_comment.py

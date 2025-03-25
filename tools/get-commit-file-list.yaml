@@ -1,0 +1,76 @@
+identity:
+  name: get_commit_file_list
+  author: liuhan
+  label:
+    en_US: Get Commit File List
+    zh_Hans: 获取Commit文件列表
+    pt_BR: Get Commit File List
+description:
+  human:
+    en_US: Get the list of files changed in a commit
+    zh_Hans: 获取提交中修改的文件列表
+    pt_BR: Get the list of files changed in a commit
+  llm: Get a list of files that have been modified, added, or deleted in a commit
+output_schema:
+  type: object
+  properties:
+    diff_files:
+      type: array
+      items:
+        type: string
+parameters:
+  - name: commit_sha
+    type: string
+    required: true
+    label:
+      en_US: Commit SHA
+      zh_Hans: Commit SHA
+      pt_BR: Commit SHA
+    human_description:
+      en_US: Commit SHA
+      zh_Hans: Commit SHA
+      pt_BR: Commit SHA
+    llm_description: Commit SHA to get file list from
+    form: llm
+  - name: repo_owner
+    type: string
+    required: true
+    label:
+      en_US: Repository Owner
+      zh_Hans: 仓库所有者
+      pt_BR: Repository Owner
+    human_description:
+      en_US: Owner of the repository
+      zh_Hans: 仓库所有者
+      pt_BR: Owner of the repository
+    llm_description: Owner of the repository (username or organization)
+    form: llm
+  - name: repo_name
+    type: string
+    required: true
+    label:
+      en_US: Repository Name
+      zh_Hans: 仓库名称
+      pt_BR: Repository Name
+    human_description:
+      en_US: Name of the repository
+      zh_Hans: 仓库名称
+      pt_BR: Name of the repository
+    llm_description: Name of the repository
+    form: llm
+  - name: file_type_blacklist
+    type: string
+    required: false
+    label:
+      en_US: File Type Blacklist
+      zh_Hans: 文件类型黑名单
+      pt_BR: File Type Blacklist
+    human_description:
+      en_US: Comma-separated list of file types to exclude (e.g. yaml,json,yml)
+      zh_Hans: 以逗号分隔的要排除的文件类型列表（例如 yaml,json,yml）
+      pt_BR: Comma-separated list of file types to exclude (e.g. yaml,json,yml)
+    llm_description: Optional comma-separated list of file extensions to exclude (without the dot)
+    form: llm
+extra:
+  python:
+    source: tools/get_commit_file_list.py
