@@ -28,24 +28,24 @@ class GiteaToolsTool(Tool):
                 return
 
             if file_path:
-                # 如果指定了文件路径，获取特定文件的diff
+                # 如果指定了文件路径，获取完整diff并解析
                 headers = {
                     "Authorization": f"token {gitea_token}",
-                    "Accept": "application/json"
+                    "Accept": "text/plain"
                 }
                 url = f"{gitea_api_url}/api/v1/repos/{owner}/{repo}/git/commits/{commit_sha}.diff"
                 
                 response = requests.get(url, headers=headers)
                 response.raise_for_status()
+                full_diff = response.text
                 
-                commit_data = response.json()
-                files_data = commit_data.get("files", [])
+                # 解析diff内容，查找指定文件的diff
+                diff_sections = full_diff.split('diff --git ')
                 diff_content = None
                 
-                # 在文件列表中查找指定文件
-                for file_info in files_data:
-                    if file_info.get("filename") == file_path:
-                        diff_content = file_info.get("patch", "")
+                for section in diff_sections:
+                    if section.strip() and file_path in section.split('\n')[0]:
+                        diff_content = 'diff --git ' + section
                         break
                 
                 if diff_content is None:
@@ -67,3 +67,6 @@ class GiteaToolsTool(Tool):
             
         except Exception as e:
             yield self.create_text_message(f"Error fetching commit diff: {str(e)}")
+
+
+
