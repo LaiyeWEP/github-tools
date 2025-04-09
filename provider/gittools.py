@@ -11,10 +11,10 @@ class GiteaToolsProvider(ToolProvider):
             IMPLEMENT YOUR VALIDATION HERE
             """
             # Validate Gitea credentials
-            if 'gitea_access_token' not in credentials:
-                raise ValueError('Gitea access token is required')
-            if 'gitea_api_url' not in credentials:
-                raise ValueError('Gitea API URL is required')
+            if 'feishu_app_id' not in credentials:
+                raise ValueError('feishu_app_id is required')
+            if 'feishu_app_secret' not in credentials:
+                raise ValueError('Gfeishu_app_secret is required')
             
         except Exception as e:
             raise ToolProviderCredentialValidationError(str(e))

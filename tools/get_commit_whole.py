@@ -46,8 +46,7 @@ class GiteaToolsTool(Tool):
                 content = self._get_file_content(gitea_api_url, owner, repo, file_path, commit_sha, headers)
                 if content:
                     yield self.create_variable_message("file_content", {
-                        "file_path": file_path,
-                        "content": content
+                        file_path:content
                     })
                 else:
                     yield self.create_text_message(f"Error: Could not retrieve content for {file_path}")
